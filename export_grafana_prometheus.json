@@ -1,0 +1,402 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\",uri=\"/categorias\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/categorias"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\",uri=\"/categorias/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/categorias/id"
+        }
+      ],
+      "title": "Categorias Count",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos/id"
+        }
+      ],
+      "title": "Produtos count",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categorias\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/categorias"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categorias/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{{{method}}/{{outcome}}/{{status}}{{uri}}}}",
+          "range": true,
+          "refId": "/categorias/id"
+        }
+      ],
+      "title": "Categorias Max",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos/id"
+        }
+      ],
+      "title": "Produtos max",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "gestao_vendas",
+  "uid": "Qng96A97z",
+  "version": 5,
+  "weekStart": ""
+}

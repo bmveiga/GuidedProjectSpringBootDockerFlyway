@@ -39,6 +39,31 @@ public class Produto {
 	@JoinColumn(name = "codigo_categoria", referencedColumnName = "codigo")
 	private Categoria categoria;
 
+	public Produto() {
+
+	}
+	
+	public Produto(String descricao, Integer quantidade, BigDecimal precoCusto, BigDecimal precoVenda,
+			String observacao, Categoria categoria) {
+		this.descricao = descricao;
+		this.quantidade = quantidade;
+		this.precoCusto = precoCusto;
+		this.precoVenda = precoVenda;
+		this.observacao = observacao;
+		this.categoria = categoria;
+	}
+
+	public Produto(Long codigo, String descricao, Integer quantidade, BigDecimal precoCusto, BigDecimal precoVenda,
+			String observacao, Categoria categoria) {
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.quantidade = quantidade;
+		this.precoCusto = precoCusto;
+		this.precoVenda = precoVenda;
+		this.observacao = observacao;
+		this.categoria = categoria;
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}

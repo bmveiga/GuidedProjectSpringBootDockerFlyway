@@ -8,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,7 @@ public class GestaoVendasExceptionHandler extends ResponseEntityExceptionHandler
 
 	private static final String LENGTH = "Length";
 	private static final String NOT_BLANK = "NotBlank";
+	private static final String NOT_NULL = "NotNull";
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -31,6 +33,14 @@ public class GestaoVendasExceptionHandler extends ResponseEntityExceptionHandler
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request){
+		String msgUser = "Recurso não encontrado";
+		String msgDev = ex.toString();
+		List<Error> errors = Arrays.asList(new Error(msgUser, msgDev));
+		return handleExceptionInternal(ex, errors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+	
+	@ExceptionHandler(JpaObjectRetrievalFailureException.class)
+	public ResponseEntity<Object> handleJpaObjectRetrievalFailureException(JpaObjectRetrievalFailureException ex, WebRequest request){
 		String msgUser = "Recurso não encontrado";
 		String msgDev = ex.toString();
 		List<Error> errors = Arrays.asList(new Error(msgUser, msgDev));
@@ -57,6 +67,9 @@ public class GestaoVendasExceptionHandler extends ResponseEntityExceptionHandler
 
 	private String tratarMsgErroUser(FieldError fieldError) {
 		if (fieldError.getCode().equals(NOT_BLANK)) {
+			return fieldError.getDefaultMessage().concat(" é obrigatório");
+		}
+		if (fieldError.getCode().equals(NOT_NULL)) {
 			return fieldError.getDefaultMessage().concat(" é obrigatório");
 		}
 		if (fieldError.getCode().equals(LENGTH)) {
