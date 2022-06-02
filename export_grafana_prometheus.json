@@ -56,10 +56,261 @@
         "overrides": []
       },
       "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_sum{job=\"gestao-vendas\", uri=\"/clientes\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/cliente"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_sum",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/clientes/id"
+        }
+      ],
+      "title": "Cliente sum",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\",uri=\"/clientes\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/clientes"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\",uri=\"/clientes/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/clientes/id"
+        }
+      ],
+      "title": "Cliente max",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
+      },
+      "id": 10,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\", uri=\"/clientes\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{label_name}}",
+          "range": true,
+          "refId": "/clientes"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_count{job=\"gestao-vendas\", uri=\"/clientes/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{label_name}}",
+          "range": true,
+          "refId": "/clientes/id"
+        }
+      ],
+      "title": "Cliente count",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 13
       },
       "id": 2,
       "options": {
@@ -131,10 +382,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 20
       },
       "id": 6,
       "options": {
@@ -177,6 +428,107 @@
       ],
       "title": "Produtos count",
       "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "dHbD30r7z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos\"}",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "dHbD30r7z"
+          },
+          "editorMode": "code",
+          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos/{id}\"}",
+          "hide": false,
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
+          "range": true,
+          "refId": "/produtos/id"
+        }
+      ],
+      "title": "Produtos max",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -235,10 +587,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 10
+        "x": 12,
+        "y": 26
       },
       "id": 4,
       "options": {
@@ -279,107 +631,6 @@
       ],
       "title": "Categorias Max",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "dHbD30r7z"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "id": 8,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "dHbD30r7z"
-          },
-          "editorMode": "code",
-          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos\"}",
-          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
-          "range": true,
-          "refId": "/produtos"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "dHbD30r7z"
-          },
-          "editorMode": "code",
-          "expr": "http_server_requests_seconds_max{job=\"gestao-vendas\", uri=\"/categoria{codigoCategoria}/produtos/{id}\"}",
-          "hide": false,
-          "legendFormat": "{{method}}/{{outcome}}/{{status}}{{uri}}",
-          "range": true,
-          "refId": "/produtos/id"
-        }
-      ],
-      "title": "Produtos max",
-      "type": "timeseries"
     }
   ],
   "refresh": "",
@@ -390,7 +641,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},

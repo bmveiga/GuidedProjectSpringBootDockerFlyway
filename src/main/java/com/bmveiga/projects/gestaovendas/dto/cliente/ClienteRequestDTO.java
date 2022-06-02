@@ -1,4 +1,4 @@
-package com.bmveiga.projects.gestaovendas.dto.cliente;
+ package com.bmveiga.projects.gestaovendas.dto.cliente;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -40,6 +40,13 @@ public class ClienteRequestDTO {
 				enderecoDTO.getComplemento(), enderecoDTO.getBairro(), enderecoDTO.getCep(), enderecoDTO.getCidade(),
 				enderecoDTO.getEstado());
 		return new Cliente(nome, telefone, ativo, endereco);
+	}
+	
+	public Cliente converterParaEntidade(Long codigo) {
+		Endereco endereco = new Endereco(enderecoDTO.getLogradouro(), enderecoDTO.getNumero(),
+				enderecoDTO.getComplemento(), enderecoDTO.getBairro(), enderecoDTO.getCep(), enderecoDTO.getCidade(),
+				enderecoDTO.getEstado());
+		return new Cliente(codigo, nome, telefone, ativo, endereco);
 	}
 
 	public String getNome() {

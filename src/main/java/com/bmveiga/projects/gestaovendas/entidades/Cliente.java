@@ -33,6 +33,14 @@ public class Cliente {
 		this.ativo = ativo;
 		this.endereco = endereco;
 	}
+	
+	public Cliente(Long codigo, String nome, String telefone, Boolean ativo, Endereco endereco) {
+		this.codigo = codigo;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.ativo = ativo;
+		this.endereco = endereco;
+	}
 
 	public Long getCodigo() {
 		return codigo;
