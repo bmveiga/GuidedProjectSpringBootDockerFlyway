@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bmveiga.projects.gestaovendas.dto.venda.ClienteVendaResponseDTO;
 import com.bmveiga.projects.gestaovendas.dto.venda.ItemVendaRequestDTO;
@@ -51,12 +53,30 @@ public class VendaServico extends AbstractVendaServico {
 		return retornandoClienteVendaResponseDto(venda, itensVendaList);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
 	public ClienteVendaResponseDTO salvar(Long codigoCliente, VendaRequestDTO vendaDto) {
 		Cliente cliente = validarClienteVendaExiste(codigoCliente);
 		validarProdutoExiste(vendaDto.getItensVendaDto());
 		Venda salvarVenda = salvarVenda(cliente, vendaDto);
 		return retornandoClienteVendaResponseDto(salvarVenda,
 				itemVendaRepositorio.findByVendaPorCodigo(salvarVenda.getCodigo()));
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+	public void deletar (Long codigoVenda) {
+		validarVendaExiste(codigoVenda);
+		List<ItemVenda> itensVenda = itemVendaRepositorio.findByVendaPorCodigo(codigoVenda);
+		validarProdutoExisteEDevolverEstoque(itensVenda);
+		itemVendaRepositorio.deleteAll(itensVenda);
+		vendaRepositorio.deleteById(codigoVenda);
+	}
+	
+	private void validarProdutoExisteEDevolverEstoque(List<ItemVenda> itensVenda) {
+		itensVenda.forEach(item ->{
+			Produto produto = produtoServico.validarProdutoExiste(item.getProduto().getCodigo());
+			produto.setQuantidade(produto.getQuantidade() + item.getQuantidade());
+			produtoServico.atualizarQuantidadeEmEstoque(produto);
+		});
 	}
 
 	private Venda salvarVenda(Cliente cliente, VendaRequestDTO vendaDto) {
@@ -71,7 +91,7 @@ public class VendaServico extends AbstractVendaServico {
 				Produto produto = produtoServico.validarProdutoExiste(item.getCodigoProduto());
 				validarQuantidadeProdutoExiste(produto, item.getQuantidade());
 				produto.setQuantidade(produto.getQuantidade() - item.getQuantidade());
-				produtoServico.atualizarQuantidadeAposVenda(produto);
+				produtoServico.atualizarQuantidadeEmEstoque(produto);
 		});
 	}
 	
